@@ -1,0 +1,15 @@
+<html>
+    <head><title>Dashboard</title></head>
+    <body>
+        <h2> Welcome, {{username}}</h2>
+        <p> Welcome, to the Dashboard</p>
+        <ul>
+            <li><a href="#">View available books</a></li>
+            <li><a href="#">Post a Book</a> </li>
+            <li><a href="#">check your points</a></li>
+        </ul>
+        <form action="{{ url_for('logout')}}" method="post">
+            <button type="submit">Logout</button>
+        </form>
+    </body>
+</html>
