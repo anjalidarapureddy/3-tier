@@ -29,7 +29,8 @@ gunicorn
 gunicorn --bind 127.0.0.1:8000 app:app --daemon    # this deamons helps to run the gunicorn in background # first app means the file name(app.py) and 2nd app means flask instance inside the file i.e., app= Flask(__name__)
 Test it internally:  curl http://127.0.0.1:8000
 6.Configure NGINX to forward port 80 to Gunicorn (port 8000):
-  cd /etc/nginx/sites-available/flask_app 
+  cd /etc/nginx/sites-available/flask_app
+  
         server {
             listen 80;
             server_name YOUR_PUBLIC_IP;
