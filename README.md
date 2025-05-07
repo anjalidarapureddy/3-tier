@@ -219,3 +219,50 @@ Then open your ALB DNS in the browser.
 
 
 
+
+
+----------------------------
+user data
+
+#!/bin/bash
+# Update and install system packages
+apt update -y
+apt install -y python3-pip python3-venv nginx
+git clone
+cd 3-tier
+python3 -m venv venv
+source venv/bin/activate
+
+# Install Python dependencies
+pip install --upgrade pip
+pip install flask gunicorn
+pip install flask Flask_SQLAlchemy gunicorn
+# Start Gunicorn server in background
+nohup venv/bin/gunicorn --bind 127.0.0.1:8000 app:app &
+
+# Configure Nginx
+cat <<EOF > /etc/nginx/sites-available/flaskapp
+
+server {
+    listen 80;
+    server_name localhost;
+    location / {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
+    }
+}
+EOF
+
+ln -s /etc/nginx/sites-available/flaskapp /etc/nginx/sites-enabled
+rm /etc/nginx/sites-enabled/default
+systemctl restart nginx
+
+
+
+
+
+
+
+
+
