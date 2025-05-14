@@ -259,7 +259,7 @@ rm /etc/nginx/sites-enabled/default
 systemctl restart nginx
 
 
-
+move to jenkins
 
 
 
